@@ -1,27 +1,48 @@
+//ambil elemen menggunakan DOM
 const deskripsiInput = document.getElementById("deskripsiMya")
 const jumlahInput = document.getElementById("jumlahMya")
 const tipeSelect = document.getElementById("tipeMya")
 
+//ambil elemen menggunakan DOM saat sudah submit tombol stambah
 const tombolTambah = document.getElementById("tombolTambahMya")
+//tambah event klik di tombol tambah
 tombolTambah.addEventListener("click", tambahTransaksi);
+
+//tampung array transaksi yang diinput
+let transaksi = [];
+
+//function tambah transaksi
 function tambahTransaksi(){
+    //timestamp
+    console.log("Hari ini");
+    
+    //ambil nilai input
     const deskripsiMya = deskripsiInput.value;
     const jumlahMya = Number(jumlahInput.value);
     const tipeMya = tipeSelect.value;
-
+    //panggil nilai input
     console.log(deskripsiMya);
     console.log(jumlahMya);
     console.log(tipeMya);
+
+    //ambil elemen list tiap transaksi
+    const listTransaksi = document.getElementById("listTransaksiMya");
+        //membuat data transaksi saat di klik
+        transaksi.push({
+        deskripsiMya,
+        jumlahMya,
+        tipeMya
+    });
+    //panggil function list data yang diinput
+    renderData();
+    //panggil function perhitungan saldo
+    hitungSaldo();
 }
 
-const listTransaksi = document.getElementById("listTransaksiMya")
-let transaksi = [];
-transaksi.push({
-    deskripsiMya,
-    jumlahMya,
-    tipeMya
-});
+//ambil elemen list tiap transaksi
+const listTransaksi = document.getElementById("listTransaksiMya");
 
+//menampilkan data ke Halaman
 function renderData(){
     listTransaksi.innerHTML = "";
     transaksi.forEach(item => {
@@ -31,18 +52,18 @@ function renderData(){
 
         listTransaksi.appendChild(li);
     });
-
-    renderData();
 }
-
+    
+//ambil elemen total tiap transaksi
 const totalBalance = document.getElementById("totalMya")
+//function hitunmg transaksi
 function hitungSaldo(){
     let saldo = 0;
 
     transaksi.forEach(item => {
        
-        if(itemm.tipeMya === "pemasukan"){
-            saldo +=item.jumlahMya;
+        if(item.tipeMya === "pemasukan"){
+            saldo += item.jumlahMya;
         }else{
             saldo -= item.jumlahMya;
         }
@@ -60,37 +81,24 @@ tipeSelect.addEventListener("change", function(){
     console.log(tipeSelect.value);
 });
 
-const tombolHapus = document.createElement("button");
-tombolHapus.textContent = "Hapus";
-tombolHapus.addEventListener("click", function(){
-    transaksi.splice(index, 1);
-    renderData();
-    hitungSaldo();
+//const tombolHapus = document.createElement("button");
+//tombolHapus.textContent = "Hapus";
+//tombolHapus.addEventListener("click", function(){
+//    transaksi.splice(index, 1);
+//    renderData();
+//    hitungSaldo();
+//});
 
-});
+//const yakin = confirm(
+//    "Yakin mau hapus?"
+//);
+//if(yakin){
+    //}
 
-alert("Data berhasil ditambahkan");
+//const nama = prompt(
+//    " Masukan nama pengguna"
+//);
 
-const yakin = confirm(
-    "Yakin mau hapus?"
-);
-if(yakin){
-    //yakin
-}
-
-const nama = orompt(
-    " Masukan nama pengguna"
-);
-
-console.log(location.href);
-
-location.reload();
-
-location.setItem(
-    "transaksi",
-    JSON.stringify("transaksi")
-);
-
-transaksi = JSON.parse(
-    localStorage.getItem("transaksi") || []
-)
+//transaksi = JSON.parse(
+//    JSON.parse(localStorage.getItem("transaksi") || []);
+//);
