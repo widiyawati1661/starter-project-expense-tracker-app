@@ -71,16 +71,19 @@ function hitungSaldo(){
     totalBalance.textContent = saldo;
 }
 
+//event agar saat enter bisa langsung transaksi
 deskripsiInput.addEventListener("keypress", function(e){
     if(e.key === "Enter"){
         tambahTransaksi();
     }
 });
 
+//event agar bisa edit
 tipeSelect.addEventListener("change", function(){
     console.log(tipeSelect.value);
 });
 
+//buat tombol hapus
 //const tombolHapus = document.createElement("button");
 //tombolHapus.textContent = "Hapus";
 //tombolHapus.addEventListener("click", function(){
