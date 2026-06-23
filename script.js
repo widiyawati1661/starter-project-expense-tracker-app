@@ -84,24 +84,20 @@ tipeSelect.addEventListener("change", function(){
 });
 
 //buat tombol hapus
-//const tombolHapus = document.createElement("button");
-//tombolHapus.textContent = "Hapus";
-//tombolHapus.addEventListener("click", function(){
-//    transaksi.splice(index, 1);
-//    renderData();
-//    hitungSaldo();
-//});
+const tombolHapus = document.getElementById("tombolHapusMya");
+tombolHapus.textContent = "Hapus";
+//tambah event klik di tombol hapus
+tombolHapus.addEventListener("click", function(){
+    //konfirmasi hapus
+    const yakin = confirm(
+        "Yakin mau hapus?"
+        );
+    if(yakin){
+        //hapus transaksi terakhir
+        transaksi.pop();
 
-//const yakin = confirm(
-//    "Yakin mau hapus?"
-//);
-//if(yakin){
-    //}
-
-//const nama = prompt(
-//    " Masukan nama pengguna"
-//);
-
-//transaksi = JSON.parse(
-//    JSON.parse(localStorage.getItem("transaksi") || []);
-//);
+        renderData();
+        hitungSaldo();
+    }
+    
+});
