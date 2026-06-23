@@ -9,7 +9,10 @@ const tombolTambah = document.getElementById("tombolTambahMya")
 tombolTambah.addEventListener("click", tambahTransaksi);
 
 //tampung array transaksi yang diinput
-let transaksi = [];
+//edit: ubah string menjadi array js
+let transaksi =
+JSON.parse(localStorage.getItem("transaksi")
+) || [];
 
 //function tambah transaksi
 function tambahTransaksi(){
@@ -33,6 +36,8 @@ function tambahTransaksi(){
         jumlahMya,
         tipeMya
     });
+    //edit agar tersimpan di array js
+    simpanData();
     //panggil function list data yang diinput
     renderData();
     //panggil function perhitungan saldo
@@ -101,3 +106,12 @@ tombolHapus.addEventListener("click", function(){
     }
     
 });
+
+//buat fungsi buat simpan data di ubah dari string yang hanya string menjadi array js
+function simpanData(){
+    localStorage.setItem(
+        "transaksi",
+        JSOn.stringify(transaksi)
+        );
+}
+
