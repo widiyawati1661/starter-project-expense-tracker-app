@@ -57,6 +57,22 @@ function renderData(){
 
         listTransaksi.appendChild(li);
     });
+    //munculkan filter
+    const filter = filterKategori.value;
+    let dataTampil = transaksi;
+    if(filter !== "semua"){
+        dataTampil = transaksi.filter(item =>
+            item.tipeMya === filter
+            );
+    }
+    dataTampil.forEach(item =>{
+        const li = document.createElement("li");
+        
+        li.textContent =
+        `${item.deskripsiMya} - ${item.jumlahMya}`;
+        
+        listTransaksi.appendChild(li);    
+    });
 }
     
 //ambil elemen total tiap transaksi
@@ -115,3 +131,8 @@ function simpanData(){
         );
 }
 
+//declare functpion kategorpi agar bisa diubah
+const filterKategori = getElementById("kategoriMya");
+filterKategori.addEventListener("change", function(){
+    renderData();    
+});
