@@ -133,6 +133,6 @@ function simpanData(){
 
 //declare functpion kategorpi agar bisa diubah
 const filterKategori = getElementById("kategoriMya");
-filterKategori.addEventListener("change", function(){
+filterKategori.addEventListener("change", () => {
     renderData();    
 });
