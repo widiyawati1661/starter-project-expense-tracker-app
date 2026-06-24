@@ -111,7 +111,7 @@ tombolHapus.addEventListener("click", function(){
 function simpanData(){
     localStorage.setItem(
         "transaksi",
-        JSOn.stringify(transaksi)
+        JSON.stringify(transaksi)
         );
 }
 
